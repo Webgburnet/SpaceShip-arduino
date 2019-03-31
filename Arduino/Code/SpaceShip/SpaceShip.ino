@@ -40,14 +40,8 @@ void loop() {
       incomingString = Serial.readString();
       w8_key = 1;
     }
-    else if (switchstate == LOW && Ready == 1 && incomingString == "rdy" && w8_key == 1){
-       digitalWrite(3, LOW);
-       delay(250);
-       digitalWrite(3, HIGH);
-       delay(250);
-    }
-    else if (switchstate == LOW && Ready == 1 && incomingString != "rdy" && w8_key == 1){
-      Serial.println("Critical ERROR, Call 911 now!");
-      delay(500);
-    }
+
+
+
+   
 }
