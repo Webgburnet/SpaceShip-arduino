@@ -1,15 +1,36 @@
 # SpaceShip-arduino
 
+## Logiciels
+| Arduino | Fritzing |
+| :-----: | :------: |
+| ![](/icone/Arduino.png) | ![](/icone/Fritzing.png) |
+
 ## Composants
+| Arduino | SeeedStudio |
+| :-----: | :------: |
+| ![](/icone/Arduino.png) | ![](/icone/Seeed_Studio.png) | 
 
-### Arduino_Uno
-![Arduino_Uno]()
-
-## Branchement
-![Fritzing]()
+### Arduino
+| Arduino Mega  | Arduino Uno |
+| :-------------: | :-------------: |
+| ![](/composants/Arduino%20Mega.jpg) | ![](/composants/Arduino%20Uno.jpg) | 
 
 ### Shield
-* NC
+| Shield Grove base | Shield Grove Mega |
+| :-------------: | :-------------: |
+| ![](/composants/SeeedStudio/Shield_Grove_Base.png) | ![](/composants/SeeedStudio/Shield_Grove_Mega.jpg) |
+
+ 
+### SeeedStudio
+| Cable | Bouton | LED x3 |
+| :-------------: | :-------------: | :-------------: |
+| ![](/composants/SeeedStudio/Grove_Cable.jpg) | ![](/composants/SeeedStudio/Grove_Button.jpg) | ![](/composants/SeeedStudio/Grove_LED.jpg) | 
+
+## Branchement
+![](/fritzing/Untitled_Sketch.png)
+
+### Shield
+* Shield Grove
 
 ### Analogique
 * A0: NC
@@ -22,10 +43,10 @@
 ### Digital
 * D0 : RX rs232 non utilise
 * D1 : TX rs232 non utilise
-* D2 : NC
-* D3 : NC
-* D4 : NC
-* D5 : NC
+* D2 : Bouton
+* D3 : LED Verte
+* D4 : LED Rouge
+* D5 : LED Rouge
 * D6 : NC
 * D7 : NC
 * D8 : NC
