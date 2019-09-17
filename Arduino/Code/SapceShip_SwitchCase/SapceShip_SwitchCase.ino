@@ -3,6 +3,7 @@ int switchstate = 0;
 int Ready = 0;
 int w8_key = 0;
 String incomingString;
+boolean mesg = 0;
 
 int led_verte=3;
 int led_rouge1=4;
@@ -21,6 +22,7 @@ void setup() {
   digitalWrite(led_rouge2, LOW);
 
   Serial.begin(9600);
+  Serial.println("Space Ship Initialisate");
 }
 
 void loop() {
@@ -56,6 +58,11 @@ void loop() {
       digitalWrite(led_verte, LOW);
       digitalWrite(led_rouge1, HIGH); 
       digitalWrite(led_rouge2, HIGH);
+      if(mesg==0)
+      {
+        Serial.println("Send the password ?");
+        mesg=1;
+      }
       if (Serial.available() > 0){
         state = 3;
       }
@@ -87,6 +94,7 @@ void loop() {
         digitalWrite(led_rouge1, LOW);
         digitalWrite(led_rouge2, LOW);
         digitalWrite(led_verte, LOW);
+        delay(1000);
         digitalWrite(led_rouge2, HIGH);
         delay(1000);
         digitalWrite(led_rouge1, HIGH);
@@ -94,7 +102,7 @@ void loop() {
         digitalWrite(led_verte, HIGH);
         delay(1000);
         Serial.println("Space Ship is ready to initiate");
-        state=0;
+        //state=0;
         break;
     }
   }
@@ -138,6 +146,11 @@ void loop() {
 //    digitalWrite(led_verte, LOW);
 //    digitalWrite(led_rouge1, HIGH); 
 //    digitalWrite(led_rouge2, HIGH);
+//      if(mesg==0)
+//      {
+//        Serial.println("Send the password ?");
+//        mesg=1;
+//      }
 //  }
 //  
 //  /*3. L’utilisateur doit maintenant entrer le mot de passe « rdy »
