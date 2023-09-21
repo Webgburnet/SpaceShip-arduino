@@ -10,6 +10,8 @@ int led_rouge2=5;
 int BP=2;
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Debut Initialisation");
   pinMode(led_verte, OUTPUT);
   pinMode(led_rouge1, OUTPUT);
   pinMode(led_rouge2, OUTPUT);
@@ -20,11 +22,19 @@ void setup() {
   digitalWrite(led_rouge1, LOW);  
   digitalWrite(led_rouge2, LOW);
 
-  Serial.begin(9600);
+  Serial.println("Debut Initialisation");
 }
 
 void loop() {
   switchstate = digitalRead(BP);
+  Serial.print("Etat BP : ");
+  Serial.println(switchstate);
+
+  Serial.print("Etat Ready : ");
+  Serial.println(Ready);
+
+  Serial.print("MDP entree : ");
+  Serial.println(incomingString);
 
   /* 1. Tant que le bouton poussoir n’est pas actionné
      LED verte allumée.
@@ -67,7 +77,7 @@ void loop() {
      LED verte clignote (250ms allumé, 250ms éteinte).
      LEDs rouge éteintes.
   */
-  else if (switchstate == LOW && Ready == 1 && Serial.available() > 0)
+  if (Serial.available() > 0)
   {
     digitalWrite(led_rouge1, LOW);
     digitalWrite(led_rouge2, LOW);
@@ -76,28 +86,35 @@ void loop() {
     digitalWrite(led_verte, LOW);
     delay(250);
     incomingString = Serial.readString();
-    
-   /* 4. Lorsque le mot de passe « rdy » est reconnu
+    Serial.print("mdp entree : ");
+    Serial.println(incomingString);
+  }
+
+  /* 4. Lorsque le mot de passe « rdy » est reconnu
        Toutes les LEDs éteintes, puis chaque LED s’allume (pin5, puis pin 4, puis pin 3) avec un délai entre chaque allumage de 1000ms.
   */
-    if (incomingString == "rdy")
-    {
-      digitalWrite(led_rouge1, LOW);
-      digitalWrite(led_rouge2, LOW);
-      digitalWrite(led_verte, LOW);
-      digitalWrite(led_rouge2, HIGH);
-      delay(1000);
-      digitalWrite(led_rouge1, HIGH);
-      delay(1000);
-      digitalWrite(led_verte, HIGH);
-      delay(1000);
-      Serial.println("Space Ship is ready to initiate");
-      w8_key = 0;
-    }
-    else
-    {
-      w8_key = 1;
-    }
+  if (incomingString == "rdy")
+  {
+    digitalWrite(led_rouge1, LOW);
+    digitalWrite(led_rouge2, LOW);
+    digitalWrite(led_verte, LOW);
+    delay(1000);
+    digitalWrite(led_rouge2, HIGH);
+    delay(1000);
+    digitalWrite(led_rouge1, HIGH);
+    delay(1000);
+    digitalWrite(led_verte, HIGH);
+    delay(1000);
+    Serial.println("Space Ship is ready to initiate");
+    w8_key = 0;
+  }
+  else if (incomingString == "")
+  {
+    w8_key = 0;
+  }
+  else
+  {
+    w8_key = 1;
   }
   
   /* 5. Si le mot de passe entré est le mauvais
